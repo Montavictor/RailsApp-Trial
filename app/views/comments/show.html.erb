@@ -1,0 +1,15 @@
+<h1>Comment</h1>
+<ul>
+  <strong> <%= @comment.commenter %> </strong>
+  <li>
+    <%= @comment.body %>
+  </li>
+</ul>
+
+<ul>
+  <li><%= link_to "Edit", edit_article_comment_path(@comment.article, @comment) %></li>
+  <li><%= link_to "Destroy", article_comment_path(@comment.article, @comment), data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  } %></li>
+</ul>

@@ -1,0 +1,18 @@
+<h1>Comments</h1>
+<ul>
+  <% @comments.each do |comment| %>
+    <li>
+    <a href="<%= article_comment_path(comment.article, comment) %>">
+        <%= link_to comment.commenter, article_comment_path(comment.article, comment) %>
+        <br>
+        <%= link_to comment.body, article_comment_path(comment.article, comment) %>
+      </a>
+    </li>
+    <hr>
+  <% end %>
+</ul>
+<%= link_to "Back", article_path(@article) %>
+
+<h2>Add a comment:</h2>
+
+<%= render "comments/form", article: @article %>

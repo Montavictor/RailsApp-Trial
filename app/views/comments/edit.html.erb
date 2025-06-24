@@ -1,0 +1,4 @@
+<h1> Edit Comment </h1>
+
+<%= render "comments/form", article: @article %>
+<a><%= link_to "Cancel", article_comment_path(@comment.article, @comment) %></a>

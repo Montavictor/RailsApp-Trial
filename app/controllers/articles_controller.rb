@@ -1,16 +1,17 @@
 class ArticlesController < ApplicationController
+  # before_action :string_gen, only: [ :show, :edit, :update, :destroy]
+  before_action :string_gen, except: [ :index, :new, :create]
+  #get
   def index
     @articles = Article.all
   end
-
-  def show
-    @article = Article.find(params[:id])
-  end
-  
+  #Get
+  def show;  end
+  #Get
   def new
     @article = Article.new
   end
-
+  #post
   def create
     @article = Article.new(article_params)
 
@@ -20,30 +21,30 @@ class ArticlesController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
-
-  def edit
-    @article = Article.find(params[:id])
-  end
-
+  #Get
+  def edit;  end
+  #Patch
   def update
-    @article = Article.find(params[:id])
-
     if @article.update(article_params)
-      redirect_to @article
+      redirect_to articles_path
     else
       render :edit, status: :unprocessable_entity
     end
   end
 
    def destroy
-    @article = Article.find(params[:id])
+
     @article.destroy
 
     redirect_to root_path, status: :see_other
   end
 
   private
+  
     def article_params
       params.require(:article).permit(:title, :body)
+    end
+    def string_gen
+      @article = Article.find(params[:id])
     end
 end
