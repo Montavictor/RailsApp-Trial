@@ -7,9 +7,10 @@
 </ul>
 
 <ul>
-  <li><%= link_to "Edit", edit_article_comment_path(@comment.article, @comment) %></li>
-  <li><%= link_to "Destroy", article_comment_path(@comment.article, @comment), data: {
+  <li><%= link_to "Edit", edit_article_comment_path(@article, @comment) %></li>
+  <li><%= link_to "Destroy", article_comment_path(@article, @comment), data: {
                     turbo_method: :delete,
                     turbo_confirm: "Are you sure?"
                   } %></li>
 </ul>
+<a><%= link_to "Cancel", article_comments_path %></a>

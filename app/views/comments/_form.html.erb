@@ -1,13 +1,22 @@
-<%= form_with model: [ article, @comment || article.comments.build ] do |form| %>
-  <p>
-    <%= form.label :commenter %><br>
-    <%= form.text_field :commenter %>
-  </p>
-  <p>
-    <%= form.label :body %><br>
-    <%= form.text_area :body %>
-  </p>
-  <p>
-    <%= form.submit %>
+<%= form_with model: [ article, @comment ],  class: "form" do |form| %>
+  <label>
+    <%= form.text_field :commenter, class: "input", required: true %>
+    <span>Speaking as: </span>
+    <% @comment.errors.full_messages_for(:commenter).each do |message| %>
+      <div class="error-message"><%= message %></div>
+    <% end %>
+  </label>
+
+  <label>
+    <%= form.text_area :body, class: "input", required: true %>
+    <% @comment.errors.full_messages_for(:body).each do |message| %>
+      <div class="error-message"><%= message %></div>
+    <% end %>
+  </label>
+
+  <%= form.submit "Submit", class: "submit" %>
+  
+  <p class="signin">
+    
   </p>
 <% end %>

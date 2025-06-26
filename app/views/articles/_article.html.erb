@@ -1,0 +1,18 @@
+<div class="box">
+  <div class="square">
+    <%= article.title.chars.first %>
+  </div>
+  <div>
+    <div class="article-title"><%= link_to article.title, article_path(article) %></div>
+    <span class="author"><%= article_time(article.created_at) %> ago by <%= @article.author %></span>
+    <div class="comment-link"><%= link_to "#{article.comments.length} Comments ", article_comments_path(article) %> <%= link_to "Edit", edit_article_path(@article) %> <%= link_to "Delete", article_path(article), data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  } %>
+    </div>
+  </div>
+</div>
+<hr>
+<br>
+
+

@@ -1,11 +1,17 @@
-<h1>Articles</h1>
-<ul>
-  <% @articles.each do |article| %>
-    <li>
-      <a href="<%= article_path(article) %>">
-        <%= link_to article.title, article_path(article) %>
-      </a>
-    </li>
-  <% end %>
-</ul>
-<%= link_to "Create New Article", new_article_path %>
+<%= render "title" %>
+<% @articles.each do |article| %>
+  <div class="box">
+  <div class="square">
+    <%= article.title.chars.first %>
+  </div>
+  <div>
+    <div class="article-title"><%= link_to article.title, article_path(article) %></div>
+    <span class="author"><%= article_time(article.created_at) %> ago by <%= article.author %></span>
+    <div class="comment-link"><%= link_to "#{article.comments.length} Comments ", article_comments_path(article) %></div>
+    </div>
+  </div>
+  <hr>
+<% end %>
+<p class="button">
+  <%= link_to "Create Article", new_article_path %>
+</p>

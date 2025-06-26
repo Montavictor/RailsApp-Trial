@@ -1,21 +1,34 @@
-<%= form_with model: article do |form| %>
-  <div>
-    <%= form.label :title %><br>
-    <%= form.text_field :title %>
+<%= form_with model: article, class: "form", local: true do |form| %>
+  <p class="title"><%= form_title(article) %></p>
+
+  <label>
+    <%= form.text_field :author, class: "input", required: true %>
+    <span>Author</span>
+    <% article.errors.full_messages_for(:author).each do |message| %>
+      <div class="error-message"><%= message %></div>
+    <% end %>
+  </label>
+
+  <label>
+    <%= form.text_field :title, class: "input", required: true %>
+    <span>Title</span>
     <% article.errors.full_messages_for(:title).each do |message| %>
-      <div><%= message %></div>
+      <div class="error-message"><%= message %></div>
     <% end %>
-  </div>
+  </label>
+  
 
-  <div>
-    <%= form.label :body %><br>
-    <%= form.text_area :body %><br>
+  <label>
+    <%= form.text_area :body, class: "input", required: true %>
+    <span>Content</span>
     <% article.errors.full_messages_for(:body).each do |message| %>
-      <div><%= message %></div>
+      <div class="error-message"><%= message %></div>
     <% end %>
-  </div>
+  </label>
 
-  <div>
-    <%= form.submit %>
-  </div>
+  <%= form.submit "Submit", class: "submit" %>
+  
+  <p class="signin">
+    <%= link_to form_back_text(article), form_link(article)  %>
+  </p>
 <% end %>
